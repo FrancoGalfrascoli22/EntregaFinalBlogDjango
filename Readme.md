@@ -3,3 +3,4 @@ Luego de casi un mes preparando todo y asegurandome de que todo salga lo más es
 También adjunto un video explicando el funcionamiento de la página y todas las cosas que implementé en el blog.  
 Superuser: Administrador  
 Contraseña: Coder1234  
+Video: https://www.youtube.com/watch?v=VicDkYqSDS4
