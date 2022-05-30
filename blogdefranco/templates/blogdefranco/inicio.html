@@ -1,0 +1,31 @@
+{% extends 'blogdefranco/base.html' %}
+
+{% block titulo %}
+<title>Blog de Franco</title>
+{% endblock %}
+
+{% block body %}
+<div class="container blogdefranco">
+  <hr>
+  <h2> Posts Recientes: </h2>
+  <hr>
+  {% for post in object_list%}
+    <div class="row mx-1">
+      <div class="col-8" style="height: 500px; padding-top: 10px">
+        <img src=" {{ post.imagen.url }} " alt="post" class="rounded" id="imagen" style="max-width:100%; max-height:100%;">
+      </div>
+      <div class="col-4" style="padding-top: 10px; position:relative">
+        <h5 style="font-size: 2em; text-align:center"><strong>{{post.titulo|safe}}</strong></h5>
+        <p style="padding-top: 10px; font-size: 1.2em; text-align:center">{{post.epigrafe|truncatechars:330|safe}} </p>
+        <div style="position:absolute; bottom:0; right:0; padding-bottom: 20px;">
+          <a href="{% url 'Archivo' post.pk %}" class="btn btn-outline-primary float-end btn-sm">Leer más...</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+</div>
+<div class="container d-flex justify-content-end pb-3 blogdefranco">
+  <a href="{% url 'All Posts'%}" style="font-size: 180%; text-decoration:none;" class="hov-ul text-dark disp-blk">Ver todos los posts ></a>
+</div>
+{% endblock %}

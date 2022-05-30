@@ -1,0 +1,21 @@
+{% extends 'blogdefranco/base.html' %}
+{% block body %}
+
+{% block titulo %}
+    <title>Contacto - Blog De Franco</title>
+{% endblock %}
+
+    <div class="container blogdefranco">
+        <h1 style="text-align: center; padding-top:30px">Contáctame</h1>
+    </div>
+    <div class="container loginyregistro" style="padding-top:10px">
+        <div class="container">
+            <form method="POST"> 
+                {% csrf_token%}
+                {{ form.as_table }}
+                <input type="submit" class="btn btn-outline-dark mt-2" value="Enviar">
+            </form>
+        </div>
+    </div>   
+
+{% endblock %}

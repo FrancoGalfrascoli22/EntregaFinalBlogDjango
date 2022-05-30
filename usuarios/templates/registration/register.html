@@ -1,0 +1,58 @@
+{% extends 'blogdefranco/base.html' %}
+
+{% block titulo %}
+<title>Registrarse - Blog De Franco</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="container h-100 d-flex align-items-center" style="font-size: 120%;">
+    <div class="container d-flex justify-content-center">
+        <h1 class="loginyregistro">Registrarse ></h1>
+    </div>
+
+    {% if form.errors %}
+        <div class="container loginyregistro">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li class="pb-2 loginyregistro" style="animation-duration:5s;">{{ error|escape }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="container loginyregistro">
+            <form method="POST" enctype="multipart/form-data"> 
+                {% csrf_token%}
+                <div class="row loginyregistro">
+                    <div class="col-6 form-group loginyregistro">
+                        <label>Nombre de Usuario:</label>
+                        <input type="text" class="form-control loginyregistro" placeholder="Ingresa un usuario" name="username">
+                    </div>    
+                    <div class="col-6 form-group loginyregistro">
+                        <label>Email: </label>
+                        <input type="email" class="form-control loginyregistro" placeholder="Tu email..." name="email">
+                    </div>
+                    <div class="col-6 form-group loginyregistro">
+                        <label>Nombre: </label>
+                        <input type="text" class="form-control loginyregistro" placeholder="Tu nombre..." name="first_name">
+                    </div>
+                    <div class="col-6 form-group loginyregistro">
+                        <label>Apellido: </label>
+                        <input type="text" class="form-control loginyregistro" placeholder="Tu apellido.." name="last_name">
+                    </div>
+                    <div class="col-12 form-group loginyregistro">
+                        <label>Contraseña: </label>
+                        <input type="password" class="form-control loginyregistro" placeholder="Ingresa una contraseña" name="password1">
+                        <label>Contraseña (confirmación): </label>
+                        <input type="password" class="form-control loginyregistro" placeholder="Ingresa nuevamente la contraseña" name="password2">
+                    </div>
+                        <input type="submit" class="btn btn-outline-dark mt-3 loginyregistro" value="Registrarse">
+                </div> 
+            </form>              
+    </div>
+</div>
+
+{% endblock %}

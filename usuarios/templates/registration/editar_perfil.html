@@ -1,0 +1,27 @@
+{% extends 'blogdefranco/base.html' %}
+
+{% block titulo %}
+<title>Editar Perfil - Blog De Franco</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="container py-4 blogdefranco">
+    {% if user.is_authenticated %}
+        {% if user.id == perfilusuario.usuario.id %}
+            <h1>Editar Perfil</h1>
+            <form method="POST" enctype="multipart/form-data"> 
+                {% csrf_token%}
+                {{ form.as_table }}
+                <a href="{% url 'Cambiar Contraseña'%}" class='btn btn-outline-dark mt-2'>Cambiar Contraseña</a>
+                <input class='btn btn-outline-dark mt-2' type="submit" value="Editar Perfil">
+            </form>
+        {% else %}
+            <h1 style="padding-top: 4rem; padding-left: 4rem;">
+                No tenés acceso a esta página!!!
+            </h1>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}

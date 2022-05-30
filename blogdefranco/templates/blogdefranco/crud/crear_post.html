@@ -1,0 +1,48 @@
+{% extends 'blogdefranco/base.html' %}
+
+{% block titulo %}
+    <title>Crear Post - Blog De Franco</title>
+{% endblock %}
+
+{% block body %}
+
+<style>
+    .django-ckeditor-widget {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .form-control {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .input-group-addon {
+        height: 38px;
+        margin-top: 10px;
+    }
+    .input-group-append {
+        height: 38px;
+    }
+
+    .input-group-text {
+        height: 38px;
+    }
+
+</style>
+
+{% if request.user.is_staff %}
+    <div class="container py-3">
+        <h1>Crear Post</h1>
+        <form method="POST" enctype="multipart/form-data"> 
+            {% csrf_token%}
+            {{ form.media }}
+            {{ form.as_table }}
+            <input class='btn btn-outline-dark mt-2' type="submit" value="Crear">
+        </form>
+    </div>
+{% else %}
+    <h1 style="padding-top: 4rem; padding-left: 4rem;">
+        No tenés acceso a esta página!!!
+    </h1>
+{% endif %}
+
+{% endblock %}

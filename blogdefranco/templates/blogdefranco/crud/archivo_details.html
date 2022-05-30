@@ -1,0 +1,73 @@
+{% extends 'blogdefranco/base.html' %}
+
+{% block titulo %}
+    <title>{{post.titulo}} - Blog De Franco</title>
+{% endblock %}
+
+{% block body %}
+
+<style>
+    .container img {
+        width: 50%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container-fluid blogdefranco">
+    <div class="container text-center pt-5 pb-1" style="border-bottom: 1px solid black ;">
+        <h1 style="font-weight: bold ;">{{post.titulo|safe}}</h1> <br>
+    </div>
+    <div class="container text-center pt-4">
+        <h4>{{post.epigrafe|safe}}</h4> <br>
+    </div>
+    <div class="container-fluid" style="border-bottom: 1px solid black ;">
+    </div>
+    <div class="container pt-4" style="font-size: 17px; text-align: justify;" >
+        <p class="blogdefranco">{{post.cuerpo|safe}}</p> <br>
+    </div>
+    <div class="container d-flex justify-content-end pb-4">
+        {% if user.is_authenticated %}
+            {% if user.id == post.autor.id %}
+                <a href="{% url 'Editar Post' post.pk %}" class="btn btn-outline-dark float-end btn-sm" style="margin-right: 10px;">Editar</a>
+                <a href="{% url 'Borrar Post' post.pk %}" class="btn btn-outline-dark float-end btn-sm">Borrar Post</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="container-fluid" style="border-bottom: 1px solid black ;">
+    </div>
+    <div class="container d-flex justify-content-end">
+        <h5 style="padding-top: 10px; padding-bottom: 5px; font-weight: bold"><i>{{post.autor.first_name}} {{post.autor.last_name}} - {{post.fecha}}</i></h5>
+    </div>
+    <div class="container-fluid" style="border-bottom: 1px solid black ;">
+    </div>
+    <div class="container" style="padding-bottom:10px; padding-top:20px;">
+        <h4 style="font-weight: bold;">Comentarios...</h4>
+    </div>
+    <div class="container" style="padding-bottom:10px;">
+        {% if not post.comentarios.all %}
+            <div class="container border border-dark rounded" style="border-bottom: 1px solid black; padding-bottom:5px; padding-top:10px; margin-bottom: 10px;">
+                <h6 style="font-weight: bold;"><i>No hay comentarios</i></h6>     
+            </div>
+        {% else %}
+            {% for comentario in post.comentarios.all reversed %}
+                <div class="container border border-dark rounded" style="border-bottom: 1px solid black; padding-bottom:10px; padding-top:10px; margin-bottom: 10px;">
+                   <strong>{{comentario.nombre.first_name}} {{comentario.nombre.last_name}} ({{comentario.nombre}}) - <small>{{comentario.fecha}} comentó...</small></strong>
+                    <br>
+                    {{comentario.cuerpo}}
+                </div>
+            {% endfor %}
+        {% endif %}    
+    </div>
+    <div class="container">
+        <a href="{% url 'Añadir Comentario' post.pk %}" class="hov-ul text-dark disp-blk"><strong>Añadir Comentario</strong></a>
+    </div>
+    <div class="container-fluid" style="border-bottom: 1px solid black ; padding-top:20px ">
+
+    </div>
+    <div class="container d-flex justify-content-end pt-3 pb-2">
+        <a href="{% url 'Inicio' %}" style="text-decoration:none;" class="hov-ul text-dark disp-blk"><h5 style="font-weight: bold;">Volver al Inicio ></h5></a>
+    </div>    
+</div>
+
+{% endblock %}

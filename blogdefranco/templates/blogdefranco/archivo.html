@@ -1,0 +1,24 @@
+{% extends 'blogdefranco/base.html' %}
+
+{% block titulo %}
+<title> Archivo - Blog De Franco </title>
+{% endblock %}
+
+{% block body %}
+
+<section class="pt-4 pt-5--large pr-sm pb-3 pb-5--large pl-sm bg-white blogdefranco">
+ <div class="container pt-2">
+
+    <h3 style="text-align: center">Todos los Posts:</h3> <br>
+    {% for post in object_list%}
+        <div class="container" style="margin-bottom: 10px; border-top: 1px solid black;">
+            <div class="container" style="margin-bottom: 15px; border-bottom: 1px solid black; padding-top:15px">
+                <a href="{% url 'Archivo' post.pk %}" class="hov-ul text-dark disp-blk" style="text-decoration: none;"><h6><strong>{{post.titulo}}</strong></h6> <p class="d-flex justify-content-end">{{post.fecha}}</p></a>
+            </div>
+        </div>
+    {% endfor %}
+
+ </div>
+</section>
+
+{% endblock %}
